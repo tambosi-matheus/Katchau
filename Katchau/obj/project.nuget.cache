@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8iQ8tmfOYJcroqXMyaD3+YEx6TVMrxgnkjgU45TIRXU1sAxsmck8xAOHP7FeMqvcMwCDhAm2aDbSUh8aW40zvQ==",
+  "success": true,
+  "projectFilePath": "D:\\Programming\\C#\\Katchau\\Katchau\\Katchau.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Matheus\\.nuget\\packages\\erroror\\2.0.1\\erroror.2.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

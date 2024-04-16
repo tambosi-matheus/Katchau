@@ -1,0 +1,11 @@
+D:\Programming\C#\Katchau\Katchau.Contracts\bin\Debug\net8.0\Katchau.Contracts.deps.json
+D:\Programming\C#\Katchau\Katchau.Contracts\bin\Debug\net8.0\Katchau.Contracts.dll
+D:\Programming\C#\Katchau\Katchau.Contracts\bin\Debug\net8.0\Katchau.Contracts.pdb
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\Katchau.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\Katchau.Contracts.AssemblyInfoInputs.cache
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\Katchau.Contracts.AssemblyInfo.cs
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\Katchau.Contracts.csproj.CoreCompileInputs.cache
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\Katchau.Contracts.dll
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\refint\Katchau.Contracts.dll
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\Katchau.Contracts.pdb
+D:\Programming\C#\Katchau\Katchau.Contracts\obj\Debug\net8.0\ref\Katchau.Contracts.dll
