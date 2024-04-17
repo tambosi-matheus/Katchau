@@ -28,3 +28,4 @@ D:\Programming\C#\Katchau\Katchau\obj\Debug\net8.0\Katchau.pdb
 D:\Programming\C#\Katchau\Katchau\obj\Debug\net8.0\Katchau.genruntimeconfig.cache
 D:\Programming\C#\Katchau\Katchau\obj\Debug\net8.0\ref\Katchau.dll
 D:\Programming\C#\Katchau\Katchau\bin\Debug\net8.0\ErrorOr.dll
+D:\Programming\C#\Katchau\Katchau\obj\Debug\net8.0\Katchau.sourcelink.json

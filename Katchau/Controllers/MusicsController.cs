@@ -1,9 +1,8 @@
 using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
-[ApiController]
-[Route("[controller]")]
-public class MusicsController : ControllerBase
+public class MusicsController : ApiController
 {
     private readonly IMusicService _musicService;
 
@@ -15,29 +14,20 @@ public class MusicsController : ControllerBase
     [HttpPost]
     public IActionResult CreateMusic(CreateMusicRequest request)
     {
-        var music = new Music(
-            Guid.NewGuid(),
-            request.Name,
-            request.Author,
-            request.Genres,
-            request.CreatedDateTime,
-            DateTime.UtcNow
-        );
+        ErrorOr<Music> requestToMusicResult = Music.From(request);
 
-        _musicService.CreateMusic(music);
+        if(requestToMusicResult.IsError)
+        {
+            return Problem(requestToMusicResult.Errors);
+        }
 
-        var response = new MusicResponse(
-            music.Id,
-            music.Name,
-            music.Author,
-            music.Genres,
-            music.CreatedDateTime,
-            music.LastModifiedDateTime
+        var music = requestToMusicResult.Value;
+        ErrorOr<Created> createMusicResult = _musicService.CreateMusic(music);
+
+        return createMusicResult.Match(
+            created => CreatedAtGetMusic(music),
+            errors => Problem(errors)
         );
-        return CreatedAtAction(
-            actionName: nameof(GetMusic),
-            routeValues: new {id = music.Id},
-            value: response);
     }
 
     [HttpGet("{id:guid}")]
@@ -45,13 +35,47 @@ public class MusicsController : ControllerBase
     {
         ErrorOr<Music> getMusicResult = _musicService.GetMusic(id);
 
-        if(getMusicResult.IsError &&
-            getMusicResult.FirstError == Errors.Music.NotFound)
-            return NotFound();
+        return getMusicResult.Match(
+            music => Ok(MapMusicResponse(music)),
+            errors => Problem(errors)
+        );
+    }
 
-        var music = getMusicResult.Value;
+    [HttpPut("{id:guid}")]
+    public IActionResult UpsertMusic(Guid id, UpsertMusicRequest request)
+    {
+        ErrorOr<Music> requestToMusicResult = Music.From(id, request);
 
-        var response = new MusicResponse(
+
+        if(requestToMusicResult.IsError)
+        {
+            return Problem(requestToMusicResult.Errors);
+        }
+
+        var music = requestToMusicResult.Value;
+        ErrorOr<UpsertMusic> upsertedMusicResult = _musicService.UpsertMusic(music);
+
+
+        return upsertedMusicResult.Match(
+            upserted => upserted.isNewlyCreated ? CreatedAtGetMusic(music) : NoContent(),
+            errors => Problem(errors)
+        );
+    }
+
+    [HttpDelete("{id:guid}")]
+    public IActionResult DeleteMusic(Guid id)
+    {
+        ErrorOr<Deleted> deleteMusicResult = _musicService.DeleteMusic(id);
+        
+        return deleteMusicResult.Match(
+            deleted => NoContent(),
+            errors => Problem(errors)
+        );
+    }
+
+    private static MusicResponse MapMusicResponse(Music music)
+    {
+        return new MusicResponse(
             music.Id,
             music.Name,
             music.Author,
@@ -59,29 +83,12 @@ public class MusicsController : ControllerBase
             music.CreatedDateTime,
             music.LastModifiedDateTime
         );
-        return Ok(response);
     }
-
-    [HttpPut("{id:guid}")]
-    public IActionResult UpsertMusic(Guid id, CreateMusicRequest request)
+    private IActionResult CreatedAtGetMusic(Music music)
     {
-        var music = new Music(
-            id,
-            request.Name,
-            request.Author,
-            request.Genres,
-            request.CreatedDateTime,
-            DateTime.UtcNow);
-
-        _musicService.UpsertMusic(music);
-
-        return NoContent();
-    }
-
-    [HttpDelete("{id:guid}")]
-    public IActionResult DeleteMusic(Guid id)
-    {
-        _musicService.DeleteMusic(id);
-        return NoContent();
+        return CreatedAtAction(
+            actionName: nameof(GetMusic),
+            routeValues: new { id = music.Id },
+            value: MapMusicResponse(music));
     }
 }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Katchau.Contracts")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6750e75ee8c24fe55163c91f32ed786e7651bf9c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Katchau.Contracts")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Katchau.Contracts")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

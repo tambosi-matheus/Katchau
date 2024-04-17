@@ -1,16 +1,19 @@
 using ErrorOr;
+using Models;
 
 public class MusicService : IMusicService
 {
     private static readonly Dictionary<Guid, Music> _musics = new(); 
-    public void CreateMusic(Music music)
+    public ErrorOr<Created> CreateMusic(Music music)
     {
         _musics.Add(music.Id, music);
+        return Result.Created;
     }
 
-    public void DeleteMusic(Guid id)
+    public ErrorOr<Deleted> DeleteMusic(Guid id)
     {
         _musics.Remove(id);
+        return Result.Deleted;
     }
 
     public ErrorOr<Music> GetMusic(Guid id)
@@ -24,8 +27,11 @@ public class MusicService : IMusicService
         return Errors.Music.NotFound;
     }
 
-    public void UpsertMusic(Music music)
+    public ErrorOr<UpsertMusic> UpsertMusic(Music music)
     {
+        var isNewlyCreated = !_musics.ContainsKey(music.Id);
         _musics[music.Id] = music;
+
+        return new UpsertMusic(isNewlyCreated);
     }
 }

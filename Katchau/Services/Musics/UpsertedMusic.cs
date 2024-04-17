@@ -1,0 +1,1 @@
+public record struct UpsertMusic(bool isNewlyCreated);

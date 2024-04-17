@@ -1,10 +1,11 @@
 
 using ErrorOr;
+using Models;
 
 public interface IMusicService
 {
-    void CreateMusic(Music music);
-    void DeleteMusic(Guid id);
+    ErrorOr<Created> CreateMusic(Music music);
     ErrorOr<Music> GetMusic(Guid id);
-    void UpsertMusic(Music music);
+    ErrorOr<UpsertMusic> UpsertMusic(Music music);
+    ErrorOr<Deleted> DeleteMusic(Guid id);
 }

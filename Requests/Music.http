@@ -2,8 +2,8 @@ POST http://localhost:5271/musics
 Content-Type: application/json
 
 {
-    "name" : "Sunburn",
-    "author" : "DROELOE",
+    "name" : "",
+    "author" : "",
     "genres" : [
         "Eletronic",
         "Future Base",
@@ -15,11 +15,11 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:5271/Musics/54dd34d8-cc2c-4dc8-af22-22cb1953b04c
+GET http://localhost:5271/Musics/64786481-f7ba-4815-a125-44112a2ea2be
 
 ###
 
-@id=baa5514c-6a52-4fb8-91e0-43d45dc4ce41
+@id=64786481-f7ba-4815-a125-44112a2ea2be
 PUT http://localhost:5271/musics/{{id}}
 Content-Type: application/json
 
@@ -36,9 +36,9 @@ Content-Type: application/json
 }
 ###
 
-@id=00000000-0000-0000-0000-000000000000
+@id=64786481-f7ba-4815-a125-44112a2ea2be
 DELETE http://localhost:5271/musics/{{id}}
 
 ###
-@id=baa5514c-6a52-4fb8-91e0-43d45dc4ce41
+@id=64786481-f7ba-4815-a125-44112a2ea2be
 GET http://localhost:5271/musics/{{id}}
